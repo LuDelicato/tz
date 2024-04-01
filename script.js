@@ -40,15 +40,21 @@ function calculatePercentage() {
         var remainingTimeHours = totalTimeHours - completedTimeHours;
         var remainingTimeMinutes = remainingTimeHours * 60;
 
+        var hours = Math.floor(remainingTimeMinutes / 60);
+        var minutes = Math.floor(remainingTimeMinutes % 60);
+
+        var timeLeftText = "Tens de esperar mais: ";
+        if (hours === 0) {
+          timeLeftText += minutes + " minutos";
+        } else {
+          timeLeftText += hours + " horas e " + minutes + " minutos";
+        }
+
+        // Format completion time
         var currentTime = new Date();
         var completionTime = new Date(
           currentTime.getTime() + remainingTimeMinutes * 60000
         ); // Add milliseconds
-
-        var hours = Math.floor(remainingTimeMinutes / 60);
-        var minutes = Math.floor(remainingTimeMinutes % 60);
-
-        // Format completion time
         var formattedCompletionTime =
           ("0" + completionTime.getHours()).slice(-2) +
           "h" +
@@ -61,11 +67,8 @@ function calculatePercentage() {
           (completionTime.getFullYear() % 100);
 
         resultDiv.innerHTML =
-          "Tens de esperar mais: <strong><u>" +
-          hours +
-          " horas e " +
-          minutes +
-          " minutos</strong></u><br>Volta às: <strong><u>" +
+          timeLeftText +
+          "<br>Volta às: <strong><u>" +
           formattedCompletionTime +
           "</strong></u>";
       }
