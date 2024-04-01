@@ -31,19 +31,44 @@ function calculatePercentage() {
       percentageValue >= 0 &&
       percentageValue <= 100
     ) {
-      var completedTimeHours = (percentageValue / 100) * totalTimeHours;
-      var remainingTimeHours = totalTimeHours - completedTimeHours;
-      var remainingTimeMinutes = remainingTimeHours * 60;
+      if (percentageValue === 100) {
+        resultDiv.innerHTML = "Colhe isto pah!";
+      } else if (percentageValue === 0) {
+        resultDiv.innerHTML = "Acabaste de plantar não sejas burro";
+      } else {
+        var completedTimeHours = (percentageValue / 100) * totalTimeHours;
+        var remainingTimeHours = totalTimeHours - completedTimeHours;
+        var remainingTimeMinutes = remainingTimeHours * 60;
 
-      var hours = Math.floor(remainingTimeMinutes / 60);
-      var minutes = Math.floor(remainingTimeMinutes % 60);
+        var currentTime = new Date();
+        var completionTime = new Date(
+          currentTime.getTime() + remainingTimeMinutes * 60000
+        ); // Add milliseconds
 
-      resultDiv.innerHTML =
-        "Tens de esperar mais: <strong><u>" +
-        hours +
-        " horas e " +
-        minutes +
-        " minutos</strong></u>";
+        var hours = Math.floor(remainingTimeMinutes / 60);
+        var minutes = Math.floor(remainingTimeMinutes % 60);
+
+        // Format completion time
+        var formattedCompletionTime =
+          ("0" + completionTime.getHours()).slice(-2) +
+          "h" +
+          ("0" + completionTime.getMinutes()).slice(-2) +
+          " - " +
+          ("0" + completionTime.getDate()).slice(-2) +
+          "/" +
+          ("0" + (completionTime.getMonth() + 1)).slice(-2) +
+          "/" +
+          (completionTime.getFullYear() % 100);
+
+        resultDiv.innerHTML =
+          "Tens de esperar mais: <strong><u>" +
+          hours +
+          " horas e " +
+          minutes +
+          " minutos</strong></u><br>Volta às: <strong><u>" +
+          formattedCompletionTime +
+          "</strong></u>";
+      }
     } else {
       resultDiv.innerHTML = "Epa mete uma percentagem entre 0 e 100";
     }
