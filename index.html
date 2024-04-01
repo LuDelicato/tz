@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TZ Nerds Calculadora</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="background">
+      <div class="container">
+        <h1>TZ's Calculadora</h1>
+        <div class="timer-grid">
+          <h3>Percentagem</h3>
+          <input
+            type="text"
+            placeholder="Coloca a percentagem atual (ex: 1.55 ou 1,55)"
+            id="percentage-input"
+          />
+          <button onclick="calculatePercentage()">Calcular</button>
+          <div id="percentage-result"></div>
+        </div>
+        <div class="timer-grid">
+          <h3>Tempo (minutos)</h3>
+          <input
+            type="text"
+            placeholder="Coloca o tempo em minutos"
+            id="time-input"
+          />
+          <button onclick="calculateTime()">Calcular</button>
+          <div id="time-result"></div>
+        </div>
+        <button class="clear-button" onclick="clearTimers()">Limpar</button>
+      </div>
+    </div>
+    <div class="footer">
+      <p>
+        made with <span class="heart">&hearts;</span> by
+        <a
+          href="https://www.linkedin.com/in/luanna-delicato-7535a5139/"
+          target="_blank"
+          >Luanna Delicato</a
+        >
+      </p>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
